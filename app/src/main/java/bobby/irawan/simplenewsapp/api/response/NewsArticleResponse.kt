@@ -4,13 +4,13 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class NewsArticleResponse(
-    var newsSource: NewsSourceResponse? = null,
-    var author: String? = "",
-    var title: String? = "",
-    var description: String? = "",
-    var url: String? = "",
+    val newsSource: NewsSourceResponse? = null,
+    val author: String? = "",
+    val title: String? = "",
+    val description: String? = "",
+    val url: String? = "",
     @SerializedName("urlToImage")
-    var urlImage: String? = "",
-    var publishedAt: String? = "",
-    var content: String? = ""
+    val urlImage: String? = "",
+    val publishedAt: String? = "",
+    val content: String? = ""
 ) : Serializable

@@ -1,12 +1,13 @@
 package bobby.irawan.simplenewsapp.api.service
 
 import bobby.irawan.simplenewsapp.api.response.NewsResponse
+import bobby.irawan.simplenewsapp.presentation.NewsModelView
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Url
 
-interface ApiService {
+interface NewsApiService {
 
-    @GET
-    suspend fun getHeadlineNews(@Url url: String): Deferred<NewsResponse>
+    suspend fun callNewsApi(): NewsModelView
+
 }
