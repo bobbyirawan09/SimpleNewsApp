@@ -3,7 +3,7 @@ It's a simple app to show news data. Not have any name for it right now
 
 ## Tech Stack
 Tech I used to create the app 
-* MVVM desgn pattern
+* MVVM design pattern
 * Retrofit
 * Coroutine
 * Coil
