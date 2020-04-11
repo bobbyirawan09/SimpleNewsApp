@@ -5,6 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 
     defaultConfig {
         applicationId "bobby.irawan.simplenewsapp"
@@ -56,5 +60,10 @@ dependencies {
 
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+
+    // Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:2.1.5"
+    // Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:2.1.5"
 
 }

@@ -8,6 +8,6 @@ import retrofit2.http.Url
 
 interface NewsApiService {
 
-    suspend fun callNewsApi(): NewsModelView
+    suspend fun callNewsApi(): NewsResponse
 
 }
