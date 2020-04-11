@@ -8,6 +8,7 @@ Tech I used to create the app
 * Coroutine
 * Coil
 * Koin
+* Navigation Component
 * (Will be adding more later...)
 
 ## Design
