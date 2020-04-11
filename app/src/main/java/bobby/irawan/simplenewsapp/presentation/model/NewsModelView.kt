@@ -1,5 +1,6 @@
-package bobby.irawan.simplenewsapp.presentation
+package bobby.irawan.simplenewsapp.presentation.model
 
+import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 import java.io.Serializable
 
 open class NewsModelView: Serializable {

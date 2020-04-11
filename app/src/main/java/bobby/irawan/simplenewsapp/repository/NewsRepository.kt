@@ -4,9 +4,9 @@ import bobby.irawan.simplenewsapp.api.response.NewsArticleResponse
 import bobby.irawan.simplenewsapp.api.response.NewsResponse
 import bobby.irawan.simplenewsapp.api.response.NewsSourceResponse
 import bobby.irawan.simplenewsapp.api.service.NewsApiService
-import bobby.irawan.simplenewsapp.presentation.NewsArticleModelView
-import bobby.irawan.simplenewsapp.presentation.NewsModelView
-import bobby.irawan.simplenewsapp.presentation.NewsSourceModelView
+import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
+import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
+import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
 
 class NewsRepository constructor(private val api: NewsApiService) : NewsRepositoryContract {
 
@@ -26,7 +26,8 @@ class NewsRepository constructor(private val api: NewsApiService) : NewsReposito
     private fun generateArticlesModelView(articlesResponse: List<NewsArticleResponse>?): MutableList<NewsArticleModelView> {
         val articles = mutableListOf<NewsArticleModelView>()
         articlesResponse?.forEach {
-            val article = NewsArticleModelView().apply {
+            val article = NewsArticleModelView()
+                .apply {
                 author = it.author
                 content = it.content
                 description = it.description
@@ -42,7 +43,8 @@ class NewsRepository constructor(private val api: NewsApiService) : NewsReposito
     }
 
     private fun generateNewsSource(newsSource: NewsSourceResponse?): NewsSourceModelView? {
-        return NewsSourceModelView().apply {
+        return NewsSourceModelView()
+            .apply {
             id = newsSource?.id
             name = newsSource?.name
         }

@@ -1,7 +1,8 @@
-package bobby.irawan.simplenewsapp
+package bobby.irawan.simplenewsapp.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import bobby.irawan.simplenewsapp.R
 
 class HomeActivity : AppCompatActivity() {
 

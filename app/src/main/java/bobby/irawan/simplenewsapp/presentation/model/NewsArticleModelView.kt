@@ -1,4 +1,4 @@
-package bobby.irawan.simplenewsapp.presentation
+package bobby.irawan.simplenewsapp.presentation.model
 
 import java.io.Serializable
 

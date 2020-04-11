@@ -1,7 +1,6 @@
 package bobby.irawan.simplenewsapp.repository
 
-import androidx.lifecycle.LiveData
-import bobby.irawan.simplenewsapp.presentation.NewsModelView
+import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 
 interface NewsRepositoryContract {
 
