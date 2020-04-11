@@ -7,6 +7,7 @@ Tech I used to create the app
 * Retrofit
 * Coroutine
 * Coil
+* Koin
 * (Will be adding more later...)
 
 ## Design
