@@ -1,31 +1,48 @@
 package bobby.irawan.simplenewsapp.presentation.view
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import bobby.irawan.simplenewsapp.R
+import bobby.irawan.simplenewsapp.presentation.adapter.NewsAdapter
+import bobby.irawan.simplenewsapp.presentation.base.BaseFragment
+import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NewsFragment : Fragment() {
+class NewsFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = NewsFragment()
     }
 
-    val newsViewModel: NewsViewModel by viewModel()
+    private val newsViewModel: NewsViewModel by viewModel()
+    private val adapter by lazy { NewsAdapter() }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.news_fragment, container, false)
+    override fun main(view: View, savedInstanceState: Bundle?) {
+        super.main(view, savedInstanceState)
+
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun getLayoutId(): Int = R.layout.news_fragment
+
+    override fun observeViewModelChanges() {
+        newsViewModel.errorValue.observe(
+            viewLifecycleOwner,
+            Observer { message -> showErrorSnackBar(message) })
+        newsViewModel.newsLiveData.observe(
+            viewLifecycleOwner,
+            Observer { newsModelView -> showNewsList(newsModelView) }
+        )
+    }
+
+    private fun showNewsList(newsModelView: NewsModelView?) {
+        //Will show list in adapter
+    }
+
+    fun showErrorSnackBar(message: String?) {
+        //Will showing snackbar
+        //Will showing error state
     }
 
 }

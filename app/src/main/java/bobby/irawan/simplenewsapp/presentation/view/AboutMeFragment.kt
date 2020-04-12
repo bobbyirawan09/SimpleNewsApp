@@ -4,12 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import bobby.irawan.simplenewsapp.R
+import bobby.irawan.simplenewsapp.presentation.base.BaseFragment
 import bobby.irawan.simplenewsapp.presentation.viewmodel.AboutMeViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AboutMeFragment : Fragment() {
+class AboutMeFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = AboutMeFragment()
@@ -17,15 +17,15 @@ class AboutMeFragment : Fragment() {
 
     val aboutMeviewModel: AboutMeViewModel by viewModel()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.about_me_fragment, container, false)
+    override fun main(view: View, savedInstanceState: Bundle?) {
+        super.main(view, savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun getLayoutId(): Int = R.layout.about_me_fragment
+
+    override fun observeViewModelChanges() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
 }
