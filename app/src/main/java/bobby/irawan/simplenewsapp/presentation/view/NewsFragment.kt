@@ -24,7 +24,7 @@ class NewsFragment : BaseFragment() {
 
     }
 
-    override fun getLayoutId(): Int = R.layout.news_fragment
+    override fun getLayoutId(): Int = R.layout.fragment_news
 
     override fun observeViewModelChanges() {
         newsViewModel.errorValue.observe(
