@@ -1,14 +1,13 @@
 package bobby.irawan.simplenewsapp.presentation.view
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
+import androidx.fragment.app.Fragment
 import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.presentation.viewmodel.AboutMeViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AboutMeFragment : Fragment() {
 
@@ -16,7 +15,7 @@ class AboutMeFragment : Fragment() {
         fun newInstance() = AboutMeFragment()
     }
 
-    private lateinit var viewModel: AboutMeViewModel
+    val aboutMeviewModel: AboutMeViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,8 +26,6 @@ class AboutMeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(AboutMeViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }

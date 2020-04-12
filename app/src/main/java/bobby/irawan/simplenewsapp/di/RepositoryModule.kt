@@ -7,11 +7,7 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    single { (newsApiService: NewsApiService) ->
-        newsApiService
-    }
-
-    single {
+    single<NewsRepositoryContract> {
         NewsRepository(get())
     }
 }
