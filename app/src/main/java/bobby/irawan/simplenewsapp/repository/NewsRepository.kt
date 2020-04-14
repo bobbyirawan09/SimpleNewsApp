@@ -7,6 +7,8 @@ import bobby.irawan.simplenewsapp.api.service.NewsApiService
 import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class NewsRepository constructor(private val api: NewsApiService) : NewsRepositoryContract {
 
@@ -16,8 +18,8 @@ class NewsRepository constructor(private val api: NewsApiService) : NewsReposito
         return newsModelView
     }
 
-    private fun convertResponseToModelView(response: NewsResponse): NewsModelView {
-        return NewsModelView().apply {
+    private suspend fun convertResponseToModelView(response: NewsResponse): NewsModelView = withContext(Dispatchers.Default) {
+        NewsModelView().apply {
             totalResults = response.totalResults
             articles = generateArticlesModelView(response.articles)
         }

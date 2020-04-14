@@ -10,6 +10,6 @@ class NewsApiServiceImpl : NewsApiService {
     override suspend fun callNewsApi(): NewsResponse {
         val url = BASE_HEAD_LINE_NEWS_URL + API_KEY
         val newsApi = ApiUtils.getRetrofitInstance().create(NewsApi::class.java)
-        return newsApi.getHeadlineNews(url).await()
+        return newsApi.getHeadlineNews(url)
     }
 }

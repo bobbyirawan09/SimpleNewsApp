@@ -6,6 +6,26 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="News.List.Heading" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="News.List.Tag" parent="AppTheme">
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="News.List.Component.Detail" parent="AppTheme">
+        <item name="android:textColor">@color/lava</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">sans-serif</item>
     </style>
 
 </resources>

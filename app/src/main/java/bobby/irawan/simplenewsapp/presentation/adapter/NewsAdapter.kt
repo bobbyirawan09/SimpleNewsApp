@@ -10,10 +10,11 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
 
-    private var newsArticles = listOf<NewsArticleModelView>()
+    private var newsArticles: MutableList<NewsArticleModelView>? = mutableListOf()
 
-    fun setNewsArticle(newsArticles: List<NewsArticleModelView>) {
+    fun setNewsArticle(newsArticles: MutableList<NewsArticleModelView>?) {
         this.newsArticles = newsArticles
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -27,17 +28,13 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return newsArticles.size
+        return newsArticles?.size ?: 0
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(newsArticles[position])
+        holder.binding.newsArticle = newsArticles?.getOrNull(position)
     }
 
-    class NewsViewHolder(binding: RowNewsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(newsArticle: NewsArticleModelView) {
-
-        }
-    }
+    open class NewsViewHolder(val binding: RowNewsBinding) : RecyclerView.ViewHolder(binding.root)
 
 }

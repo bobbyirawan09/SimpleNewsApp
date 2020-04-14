@@ -20,9 +20,6 @@
         android:name="bobby.irawan.simplenewsapp.presentation.view.AboutMeFragment"
         android:label="fragment_about_me"
         tools:layout="@layout/fragment_about_me">
-        <action
-            android:id="@+id/action_about_me_to_news"
-            app:destination="@id/news" />
     </fragment>
 
 

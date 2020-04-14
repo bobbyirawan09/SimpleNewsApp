@@ -1,9 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="newsArticle"
+            type="bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/image_view_news"
+            android:layout_width="100dp"
+            android:background="@drawable/rounded_corner_12dp"
+            android:layout_height="100dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background"
+            bind:setImageCoil="@{newsArticle.urlImage}"/>
+
+        <TextView
+            android:id="@+id/text_view_news_tag"
+            style="@style/News.List.Tag"
+            android:background="@drawable/rounded_corner_12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/image_view_news"
+            app:layout_constraintTop_toTopOf="@+id/image_view_news"
+            tools:text="BUSINESS"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_view_title"
+            style="@style/News.List.Heading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{newsArticle.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/text_view_news_tag"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_news_tag"
+            tools:text="PSBB Tangerang Raya, Bagaimana Kasus Covid-19 di Kabupaten/Kota Tangerang dan Tangsel?" />
+
+        <TextView
+            android:id="@+id/text_view_news_source"
+            style="@style/News.List.Component.Detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{newsArticle.newsSource.name}"
+            app:layout_constraintEnd_toStartOf="@id/text_view_news_date"
+            app:layout_constraintStart_toStartOf="@+id/text_view_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+            tools:text="Kompas.com" />
+
+        <TextView
+            android:id="@+id/text_view_news_date"
+            style="@style/News.List.Component.Detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            bind:setPublishDate="@{newsArticle.publishedAt}"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_title"
+            app:layout_constraintStart_toEndOf="@+id/text_view_news_source"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+            tools:text="12-04-2020" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

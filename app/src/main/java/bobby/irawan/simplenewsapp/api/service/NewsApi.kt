@@ -8,6 +8,6 @@ import retrofit2.http.Url
 interface NewsApi {
 
     @GET
-    suspend fun getHeadlineNews(@Url url: String): Deferred<NewsResponse>
+    suspend fun getHeadlineNews(@Url url: String): NewsResponse
 
 }
