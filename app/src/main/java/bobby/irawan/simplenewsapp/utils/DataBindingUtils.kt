@@ -4,7 +4,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.api.load
-import coil.transform.CircleCropTransformation
 
 object DataBindingUtils {
 
@@ -19,7 +18,17 @@ object DataBindingUtils {
     @BindingAdapter("bind:setPublishDate")
     @JvmStatic
     fun setPublishDate(textView: TextView, publishDate: String) {
+        textView.text = publishDate.parseServerDateFormatToString()
+    }
 
+    @BindingAdapter(value = ["bind:newsAuthor", "bind:newsSource"], requireAll = false)
+    @JvmStatic
+    fun setNewsSource(textView: TextView, author: String?, newsSource: String?) {
+        if (!newsSource.isNullOrEmpty()) {
+            textView.text = newsSource
+        } else {
+            textView.text = author.orEmpty()
+        }
     }
 
 }

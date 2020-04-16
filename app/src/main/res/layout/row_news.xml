@@ -65,16 +65,31 @@
             tools:text="PSBB Tangerang Raya, Bagaimana Kasus Covid-19 di Kabupaten/Kota Tangerang dan Tangsel?" />
 
         <TextView
+            android:id="@+id/text_view_news_description"
+            style="@style/News.List.Description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{newsArticle.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_view_title"
+            app:layout_constraintTop_toBottomOf="@id/text_view_title" />
+
+        <TextView
             android:id="@+id/text_view_news_source"
             style="@style/News.List.Component.Detail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
-            android:text="@{newsArticle.newsSource.name}"
+            android:textAlignment="textStart"
             app:layout_constraintEnd_toStartOf="@id/text_view_news_date"
-            app:layout_constraintStart_toStartOf="@+id/text_view_title"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+            app:layout_constraintStart_toStartOf="@+id/text_view_news_description"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_news_description"
+            bind:newsAuthor="@{newsArticle.author}"
+            bind:newsSource="@{newsArticle.newsSource.name}"
             tools:text="Kompas.com" />
 
         <TextView
@@ -84,9 +99,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/text_view_title"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_view_news_source"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_title"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_news_description"
             bind:setPublishDate="@{newsArticle.publishedAt}"
             tools:text="12-04-2020" />
 
