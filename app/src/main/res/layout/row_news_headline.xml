@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="newsArticle"
             type="bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView" />

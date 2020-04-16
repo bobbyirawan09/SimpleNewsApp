@@ -15,5 +15,8 @@ object Constants {
 
     const val EMPTY = ""
 
+    //Recycler view
+    const val TYPE_HEADLINE = 1
+    const val TYPE_LIST = 2
 
 }
