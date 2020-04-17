@@ -5,11 +5,11 @@ It's a simple app to show news data. Not have any name for it right now
 Tech I used to create the app 
 * MVVM design pattern
 * [Retrofit](https://square.github.io/retrofit/)
-* [Coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html
+* [Coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html)
 * [Coil](https://github.com/coil-kt/coil)
-* [Koin](https://insert-koin.io
-* [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started
-* [Data binding](https://developer.android.com/topic/libraries/data-binding
+* [Koin](https://insert-koin.io)
+* [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
+* [Data binding](https://developer.android.com/topic/libraries/data-binding)
 * (Will be adding more later...)
 
 ## Design
