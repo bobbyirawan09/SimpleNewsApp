@@ -33,4 +33,21 @@
         <item name="fontFamily">sans-serif</item>
     </style>
 
+    <style name="News.List.Tag.Black.Bold" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="News.List.Tag.Black" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif</item>
+    </style>
+
+    <style name="News.List.Tag.White" parent="AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">#ffffff</item>
+    </style>
+
 </resources>
