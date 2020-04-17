@@ -32,7 +32,6 @@ class NewsFragment : BaseFragment() {
     private fun initRecyclerView() {
         recycler_view_news.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recycler_view_news.setHasFixedSize(true)
         recycler_view_news.adapter = adapter
     }
 
