@@ -24,7 +24,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (viewType == TYPE_HEADLINE) {
             val bindingAdapter = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
-                R.layout.row_news,
+                R.layout.row_news_headline,
                 parent,
                 false
             ) as RowNewsHeadlineBinding
@@ -42,11 +42,11 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_HEADLINE) {
-            val rowHolder = holder as NewsViewHolder
-            rowHolder.binding.newsArticle = newsArticles?.getOrNull(position)
-        } else {
             val headlineHolder = holder as NewsHeadlineViewHolder
             headlineHolder.binding.newsArticle = newsArticles?.getOrNull(position)
+        } else {
+            val listHolder = holder as NewsViewHolder
+            listHolder.binding.newsArticle = newsArticles?.getOrNull(position)
         }
     }
 
