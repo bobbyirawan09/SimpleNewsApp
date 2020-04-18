@@ -1,4 +1,4 @@
-package bobby.irawan.simplenewsapp.presentation.view
+package bobby.irawan.simplenewsapp.presentation.about
 
 import android.os.Bundle
 import android.view.View
@@ -12,7 +12,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class AboutMeFragment : BaseFragment<FragmentAboutMeBinding>() {
 
     companion object {
-        fun newInstance() = AboutMeFragment()
+        fun newInstance() =
+            AboutMeFragment()
     }
 
     val aboutMeviewModel: AboutMeViewModel by viewModel()

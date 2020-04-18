@@ -1,4 +1,4 @@
-package bobby.irawan.simplenewsapp.presentation.view
+package bobby.irawan.simplenewsapp.presentation.news
 
 import android.os.Bundle
 import android.view.View
@@ -18,7 +18,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class NewsFragment : BaseFragment<FragmentNewsBinding>() {
 
     companion object {
-        fun newInstance() = NewsFragment()
+        fun newInstance() =
+            NewsFragment()
     }
 
     private val newsViewModel: NewsViewModel by viewModel()

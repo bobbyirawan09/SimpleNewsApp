@@ -7,7 +7,7 @@
         android:id="@+id/frame_layout_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.view.NewsFragment">
+        tools:context=".presentation.news.NewsFragment">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
