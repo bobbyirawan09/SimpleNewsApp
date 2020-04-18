@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:padding="16dp"
         tools:context=".presentation.view.AboutMeFragment">
 
@@ -29,20 +30,31 @@
             app:layout_constraintTop_toTopOf="@+id/circle_image_person" />
 
         <TextView
+            android:id="@+id/text_view_creator_email"
             style="@style/News.List.Tag.Black"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:text="@string/creator_email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_view_name"
             app:layout_constraintTop_toBottomOf="@+id/text_view_name" />
 
+        <TextView
+            android:id="@+id/text_view_creator_job"
+            style="@style/News.List.Tag.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@string/creator_job"
+            app:layout_constraintStart_toStartOf="@+id/text_view_creator_email"
+            app:layout_constraintTop_toBottomOf="@+id/text_view_creator_email" />
+
         <View
             android:id="@+id/view_separator_1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/dotted_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +65,7 @@
             style="@style/News.List.Heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="@string/social_media_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_separator_1" />
@@ -63,8 +75,10 @@
             layout="@layout/layout_social_media"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toTopOf="@id/barrier2"
             app:layout_constraintEnd_toStartOf="@id/include_social_media_linkedin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_view_social_media_title"
@@ -75,8 +89,9 @@
             layout="@layout/layout_social_media"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toTopOf="@id/barrier2"
             app:layout_constraintEnd_toStartOf="@id/include_social_media_github"
             app:layout_constraintStart_toEndOf="@+id/include_social_media_email"
             app:layout_constraintTop_toTopOf="@+id/include_social_media_email" />
@@ -86,27 +101,30 @@
             layout="@layout/layout_social_media"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toTopOf="@id/barrier2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/include_social_media_linkedin"
-            app:layout_constraintTop_toTopOf="@+id/include_social_media_email" />
+            app:layout_constraintTop_toTopOf="@+id/include_social_media_email"
+            app:layout_constraintVertical_bias="0.0" />
 
         <View
             android:id="@+id/view_separator_2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@drawable/dotted_line"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include_social_media_email" />
+            app:layout_constraintTop_toBottomOf="@+id/barrier2" />
 
         <TextView
             android:id="@+id/text_view_interest_title"
             style="@style/News.List.Heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="@string/interest_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_separator_2" />
@@ -122,26 +140,32 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_interest_kotlin"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/interest_kotlin" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_interest_android_development"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/interest_android_development" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_interest_ui_ux"
-                style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/interest_ui_ux" />
 
         </com.google.android.material.chip.ChipGroup>
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="include_social_media_email,include_social_media_linkedin,include_social_media_github"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="715dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

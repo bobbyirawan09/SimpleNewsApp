@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import bobby.irawan.simplenewsapp.R
+import bobby.irawan.simplenewsapp.databinding.FragmentNewsBinding
 import bobby.irawan.simplenewsapp.presentation.adapter.NewsAdapter
 import bobby.irawan.simplenewsapp.presentation.base.BaseFragment
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
@@ -14,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_news.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class NewsFragment : BaseFragment() {
+class NewsFragment : BaseFragment<FragmentNewsBinding>() {
 
     companion object {
         fun newInstance() = NewsFragment()
@@ -30,9 +31,9 @@ class NewsFragment : BaseFragment() {
     }
 
     private fun initRecyclerView() {
-        recycler_view_news.layoutManager =
+        binding.recyclerViewNews.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recycler_view_news.adapter = adapter
+        binding.recyclerViewNews.adapter = adapter
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_news

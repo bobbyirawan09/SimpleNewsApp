@@ -9,4 +9,7 @@
     <string name="interest_android_development">Android Development</string>
     <string name="interest_title">Interest</string>
     <string name="social_media_title">Social Media</string>
+    <string name="social_media_github">github.com/bobbyirawan09</string>
+    <string name="social_media_linkedin">linkedin.com/in/bobby-irawan/</string>
+    <string name="creator_job">Jr. Android Developer</string>
 </resources>
