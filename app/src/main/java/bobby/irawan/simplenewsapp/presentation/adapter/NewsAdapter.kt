@@ -35,9 +35,14 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     }
     private val differ = AsyncListDiffer(this, DIFF_CALLBACK)
+    private var listener: ClickListener? = null
 
     fun setNewsArticle(newsArticles: MutableList<NewsArticleModelView>?) {
         differ.submitList(newsArticles)
+    }
+
+    fun setClickListener(listener: ClickListener){
+        this.listener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -86,5 +91,9 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     class NewsHeadlineViewHolder(val binding: RowNewsHeadlineBinding) :
         RecyclerView.ViewHolder(binding.root)
+
+    interface ClickListener {
+        fun onClickItemListener(newsArticle: NewsArticleModelView?)
+    }
 
 }

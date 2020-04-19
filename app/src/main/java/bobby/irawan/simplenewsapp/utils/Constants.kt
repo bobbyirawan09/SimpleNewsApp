@@ -19,4 +19,6 @@ object Constants {
     const val TYPE_HEADLINE = 1
     const val TYPE_LIST = 2
 
+    const val NEWS_ARTICLE_ARGS = "newsArg"
+
 }
