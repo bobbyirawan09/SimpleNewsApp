@@ -69,9 +69,11 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         if (getItemViewType(position) == TYPE_HEADLINE) {
             val headlineHolder = holder as NewsHeadlineViewHolder
             headlineHolder.binding.newsArticle = differ.currentList.get(position)
+            headlineHolder.binding.constraintLayoutParent.setOnClickListener { listener?.onClickItemListener(differ.currentList.get(position)) }
         } else {
             val listHolder = holder as NewsViewHolder
             listHolder.binding.newsArticle = differ.currentList.get(position)
+            listHolder.binding.constraintLayoutParent.setOnClickListener { listener?.onClickItemListener(differ.currentList.get(position)) }
         }
     }
 

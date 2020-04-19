@@ -6,11 +6,11 @@ import bobby.irawan.simplenewsapp.utils.Constants.DATE_FORMAT_DEFAULT
 import bobby.irawan.simplenewsapp.utils.Constants.EMPTY
 import java.text.SimpleDateFormat
 
-fun String.parseServerDateFormatToString(): String {
+fun String.parseServerDateFormatToString(oldFormat: String = DATE_FORMAT_API, newFormat: String = DATE_FORMAT_DEFAULT): String {
     try {
-        val oldDateFormat = SimpleDateFormat(DATE_FORMAT_API, APPS_LOCALE)
+        val oldDateFormat = SimpleDateFormat(oldFormat, APPS_LOCALE)
         val newDate = oldDateFormat.parse(this)
-        val newDateFormat = SimpleDateFormat(DATE_FORMAT_DEFAULT, APPS_LOCALE)
+        val newDateFormat = SimpleDateFormat(newFormat, APPS_LOCALE)
         return newDateFormat.format(newDate)
     } catch (e: Exception) {
         return EMPTY

@@ -18,6 +18,7 @@ class NewsDetailViewModel : ViewModel() {
     fun retrieveArguments(arguments: Bundle?) {
         arguments?.let {
             newsArticle = it.getSerializable(NEWS_ARTICLE_ARGS) as NewsArticleModelView
+            _newsArticleLiveData.postValue(newsArticle)
         }
     }
 

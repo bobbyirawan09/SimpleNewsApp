@@ -29,12 +29,12 @@ class NewsDetailFragment : BaseFragment<FragmentNewsDetailBinding>() {
     override fun observeViewModelChanges() {
         viewModel.newsArticleLiveData.observe(
             viewLifecycleOwner,
-            Observer { newsModelView -> showNewsArticle(newsModelView) }
+            Observer { newsArticle -> showNewsArticle(newsArticle) }
         )
     }
 
-    private fun showNewsArticle(newsModelView: NewsArticleModelView?) {
-        TODO("Not yet implemented")
+    private fun showNewsArticle(newsArticle: NewsArticleModelView?) {
+        binding.newsArticle = newsArticle
     }
 
 }

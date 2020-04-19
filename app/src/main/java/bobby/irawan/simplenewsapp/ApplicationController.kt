@@ -26,4 +26,6 @@ class ApplicationController : Application() {
         }
     }
 
+    fun getInstance(): ApplicationController = this
+
 }

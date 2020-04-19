@@ -9,7 +9,9 @@ object Constants {
 
     //Date constant
     const val DATE_FORMAT_DEFAULT = "dd-MM-yyyy"
+    const val DATE_FORMAT_DAY = "EEEE, dd MMMM yyyy \u2022 HH:mm"
     const val DATE_FORMAT_API = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+
     @JvmField
     val APPS_LOCALE = Locale("in", "ID")
 

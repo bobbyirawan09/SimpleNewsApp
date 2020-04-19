@@ -12,4 +12,5 @@
     <string name="social_media_github">github.com/bobbyirawan09</string>
     <string name="social_media_linkedin">linkedin.com/in/bobby-irawan/</string>
     <string name="creator_job">Jr. Android Developer</string>
+    <string name="author_news_detail">%1$s \u2022 %2$s</string>
 </resources>
