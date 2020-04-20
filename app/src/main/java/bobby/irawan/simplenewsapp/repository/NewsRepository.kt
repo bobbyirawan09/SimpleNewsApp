@@ -12,33 +12,36 @@ import kotlinx.coroutines.withContext
 
 class NewsRepository constructor(private val api: NewsApiService) : NewsRepositoryContract {
 
-    override suspend fun getHeadLineNews(): NewsModelView {
+    override suspend fun getHeadLineNews(): NewsModelView? {
         val newsResponse = api.callNewsApi()
         val newsModelView = convertResponseToModelView(newsResponse)
         return newsModelView
     }
 
-    private suspend fun convertResponseToModelView(response: NewsResponse): NewsModelView = withContext(Dispatchers.Default) {
-        NewsModelView().apply {
-            totalResults = response.totalResults
-            articles = generateArticlesModelView(response.articles)
+    private suspend fun convertResponseToModelView(response: NewsResponse?): NewsModelView? =
+        withContext(Dispatchers.Default) {
+            response?.let {
+                NewsModelView().apply {
+                    totalResults = it.totalResults
+                    articles = generateArticlesModelView(it.articles)
+                }
+            }
         }
-    }
 
     private fun generateArticlesModelView(articlesResponse: List<NewsArticleResponse>?): MutableList<NewsArticleModelView> {
         val articles = mutableListOf<NewsArticleModelView>()
         articlesResponse?.forEach {
             val article = NewsArticleModelView()
                 .apply {
-                author = it.author
-                content = it.content
-                description = it.description
-                newsSource = generateNewsSource(it.newsSource)
-                publishedAt = it.publishedAt
-                title = it.title
-                url = it.url
-                urlImage = it.urlImage
-            }
+                    author = it.author
+                    content = it.content
+                    description = it.description
+                    newsSource = generateNewsSource(it.newsSource)
+                    publishedAt = it.publishedAt
+                    title = it.title
+                    url = it.url
+                    urlImage = it.urlImage
+                }
             articles.add(article)
         }
         return articles
@@ -47,9 +50,9 @@ class NewsRepository constructor(private val api: NewsApiService) : NewsReposito
     private fun generateNewsSource(newsSource: NewsSourceResponse?): NewsSourceModelView? {
         return NewsSourceModelView()
             .apply {
-            id = newsSource?.id
-            name = newsSource?.name
-        }
+                id = newsSource?.id
+                name = newsSource?.name
+            }
     }
 
 }

@@ -7,9 +7,13 @@ import bobby.irawan.simplenewsapp.utils.Constants.BASE_HEAD_LINE_NEWS_URL
 
 class NewsApiServiceImpl : NewsApiService {
 
-    override suspend fun callNewsApi(): NewsResponse {
+    override suspend fun callNewsApi(): NewsResponse? {
         val url = BASE_HEAD_LINE_NEWS_URL + API_KEY
         val newsApi = ApiUtils.getRetrofitInstance().create(NewsApi::class.java)
-        return newsApi.getHeadlineNews(url)
+        return try {
+            newsApi.getHeadlineNews(url)
+        } catch (e: Throwable) {
+            return null
+        }
     }
 }

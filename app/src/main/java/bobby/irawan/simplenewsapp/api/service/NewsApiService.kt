@@ -4,6 +4,6 @@ import bobby.irawan.simplenewsapp.api.response.NewsResponse
 
 interface NewsApiService {
 
-    suspend fun callNewsApi(): NewsResponse
+    suspend fun callNewsApi(): NewsResponse?
 
 }

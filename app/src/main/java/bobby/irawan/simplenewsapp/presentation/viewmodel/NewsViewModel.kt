@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : ViewModel() {
 
-    private var news = NewsModelView()
+    private var news : NewsModelView? = null
 
     private val _newsLiveData = MutableLiveData<NewsModelView>()
     val newsLiveData: LiveData<NewsModelView>

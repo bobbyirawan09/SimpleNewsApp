@@ -4,6 +4,6 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 
 interface NewsRepositoryContract {
 
-    suspend fun getHeadLineNews(): NewsModelView
+    suspend fun getHeadLineNews(): NewsModelView?
 
 }

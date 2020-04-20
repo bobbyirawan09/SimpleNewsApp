@@ -4,9 +4,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.plusAssign
 import androidx.navigation.ui.setupWithNavController
 import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.databinding.ActivityMainBinding
+import bobby.irawan.simplenewsapp.presentation.navigation.CustomNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
@@ -23,6 +25,7 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigation() {
-        bottom_navigation_home.setupWithNavController(this.findNavController(R.id.nav_host_fragment_home))
+        val navController = findNavController(R.id.nav_host_fragment_home)
+        bottom_navigation_home.setupWithNavController(navController)
     }
 }
