@@ -3,10 +3,11 @@ package bobby.irawan.simplenewsapp.presentation.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
 
@@ -22,8 +23,6 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setUpNavigation() {
-        val navHostFragment: NavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_home) as NavHostFragment
-        binding.bottomNavigationHome.setupWithNavController(navHostFragment.navController)
+        bottom_navigation_home.setupWithNavController(this.findNavController(R.id.nav_host_fragment_home))
     }
 }

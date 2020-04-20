@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.databinding.FragmentNewsBinding
@@ -31,15 +32,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(), NewsAdapter.ClickListe
 
     override fun main(view: View, savedInstanceState: Bundle?) {
         super.main(view, savedInstanceState)
-        initRecyclerView()
         newsViewModel.getNewsData()
-    }
-
-    private fun initRecyclerView() {
-        adapter.setClickListener(this)
-        binding.recyclerViewNews.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.recyclerViewNews.adapter = adapter
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_news
@@ -55,11 +48,19 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(), NewsAdapter.ClickListe
     }
 
     private fun showNewsList(newsModelView: NewsModelView?) {
+        adapter.setClickListener(this)
         adapter.setNewsArticle(newsModelView?.articles)
+        binding.recyclerViewNews.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.recyclerViewNews.adapter = adapter
+        val divider =
+            DividerItemDecoration(binding.recyclerViewNews.context, LinearLayoutManager.VERTICAL)
+        binding.recyclerViewNews.addItemDecoration(divider)
     }
 
     fun showErrorSnackBar(message: String?) {
-        val snackbar = Snackbar.make(frame_layout_parent, message.orEmpty(), Snackbar.LENGTH_LONG)
+        val snackbar =
+            Snackbar.make(nested_scroll_view_parent, message.orEmpty(), Snackbar.LENGTH_LONG)
         snackbar.view.setBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),

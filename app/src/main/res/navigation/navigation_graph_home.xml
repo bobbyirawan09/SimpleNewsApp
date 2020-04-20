@@ -3,29 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_graph_home"
-    app:startDestination="@+id/news">
+    app:startDestination="@+id/newsFragment">
 
     <fragment
-        android:id="@+id/news"
+        android:id="@+id/newsFragment"
         android:name="bobby.irawan.simplenewsapp.presentation.news.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_news_to_about_me"
-            app:destination="@id/about_me" />
+            app:destination="@id/aboutMeFragment" />
         <action
             android:id="@+id/action_news_to_news_detail"
-            app:destination="@id/news_detail"/>
+            app:destination="@id/newsDetailFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/about_me"
+        android:id="@+id/aboutMeFragment"
         android:name="bobby.irawan.simplenewsapp.presentation.about.AboutMeFragment"
         android:label="fragment_about_me"
         tools:layout="@layout/fragment_about_me" />
 
     <fragment
-        android:id="@+id/news_detail"
+        android:id="@+id/newsDetailFragment"
         android:name="bobby.irawan.simplenewsapp.presentation.news.NewsDetailFragment"
         android:label="fragment_news_detail"
         tools:layout="@layout/fragment_news_detail">

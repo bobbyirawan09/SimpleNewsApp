@@ -41,7 +41,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         differ.submitList(newsArticles)
     }
 
-    fun setClickListener(listener: ClickListener){
+    fun setClickListener(listener: ClickListener) {
         this.listener = listener
     }
 
@@ -53,7 +53,7 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 parent,
                 false
             ) as RowNewsHeadlineBinding
-            return NewsHeadlineViewHolder(bindingAdapter)
+            return NewsHeadlineViewHolder(bindingAdapter, listener)
         } else {
             val bindingAdapter = DataBindingUtil.inflate(
                 LayoutInflater.from(parent.context),
@@ -61,19 +61,17 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 parent,
                 false
             ) as RowNewsBinding
-            return NewsViewHolder(bindingAdapter)
+            return NewsViewHolder(bindingAdapter, listener)
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_HEADLINE) {
             val headlineHolder = holder as NewsHeadlineViewHolder
-            headlineHolder.binding.newsArticle = differ.currentList.get(position)
-            headlineHolder.binding.constraintLayoutParent.setOnClickListener { listener?.onClickItemListener(differ.currentList.get(position)) }
+            headlineHolder.bind(differ.currentList.get(position))
         } else {
             val listHolder = holder as NewsViewHolder
-            listHolder.binding.newsArticle = differ.currentList.get(position)
-            listHolder.binding.constraintLayoutParent.setOnClickListener { listener?.onClickItemListener(differ.currentList.get(position)) }
+            listHolder.bind(differ.currentList.get(position))
         }
     }
 
@@ -89,10 +87,34 @@ class NewsAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return differ.currentList.size
     }
 
-    class NewsViewHolder(val binding: RowNewsBinding) : RecyclerView.ViewHolder(binding.root)
+    class NewsViewHolder(val binding: RowNewsBinding, val listener: ClickListener?) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(newsArticle: NewsArticleModelView?) {
+            binding.newsArticle = newsArticle
+            binding.constraintLayoutParent.setOnClickListener {
+                listener?.onClickItemListener(
+                    newsArticle
+                )
+            }
+            binding.executePendingBindings()
+        }
+    }
 
-    class NewsHeadlineViewHolder(val binding: RowNewsHeadlineBinding) :
-        RecyclerView.ViewHolder(binding.root)
+    class NewsHeadlineViewHolder(
+        val binding: RowNewsHeadlineBinding,
+        val listener: ClickListener?
+    ) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(newsArticle: NewsArticleModelView?) {
+            binding.newsArticle = newsArticle
+            binding.constraintLayoutParent.setOnClickListener {
+                listener?.onClickItemListener(
+                    newsArticle
+                )
+            }
+            binding.executePendingBindings()
+        }
+    }
 
     interface ClickListener {
         fun onClickItemListener(newsArticle: NewsArticleModelView?)

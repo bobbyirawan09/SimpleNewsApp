@@ -3,32 +3,25 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/frame_layout_parent"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view_parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.news.NewsFragment">
+        android:fillViewport="true">
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:layout_height="match_parent">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_news"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                tools:itemCount="3"
+                tools:listitem="@layout/row_news" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_news"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/row_news" />
+        </LinearLayout>
 
-            </LinearLayout>
-
-        </androidx.core.widget.NestedScrollView>
-
-    </FrameLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
