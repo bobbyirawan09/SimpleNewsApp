@@ -3,6 +3,7 @@ It's a simple app to show news data. Not have any name for it right now
 
 ## Tech Stack
 Tech I used to create the app 
+* [Kotlin](https://kotlinlang.org)
 * MVVM design pattern
 * [Retrofit](https://square.github.io/retrofit/)
 * [Coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html)
