@@ -69,13 +69,14 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(), NewsAdapter.ClickListe
 
     fun showErrorSnackBar(message: String?) {
         val snackbar =
-            Snackbar.make(nested_scroll_view_parent, message.orEmpty(), Snackbar.LENGTH_LONG)
+            Snackbar.make(constraint_layout_parent, message.orEmpty(), Snackbar.LENGTH_LONG)
         snackbar.view.setBackgroundColor(
             ContextCompat.getColor(
                 requireContext(),
                 R.color.red_error
             )
         )
+        snackbar.show()
     }
 
     override fun onClickItemListener(newsArticle: NewsArticleModelView?) {
