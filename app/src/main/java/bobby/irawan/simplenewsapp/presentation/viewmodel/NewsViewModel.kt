@@ -27,19 +27,18 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
         get() = _errorValue
 
     fun getNewsData() {
-        try {
             _loadingStatus.value = true
             viewModelScope.launch(Dispatchers.IO) {
                 news = repositoryContract.getHeadLineNews()
                 withContext(Dispatchers.Main) {
-                    _newsLiveData.postValue(news)
+                    if (news != null) {
+                        _newsLiveData.postValue(news)
+                    } else {
+                        _errorValue.value = "Data tidak dapat ditemukan"
+                    }
+                    _loadingStatus.value = false
                 }
             }
-        } catch (e: Throwable) {
-            _errorValue.value = e.message
-        } finally {
-            _loadingStatus.value = false
-        }
     }
 
 }

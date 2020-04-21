@@ -1,8 +1,5 @@
 package bobby.irawan.simplenewsapp.utils
 
-import androidx.lifecycle.ViewModelProvider
-import bobby.irawan.simplenewsapp.utils.Constants.API_KEY
-import bobby.irawan.simplenewsapp.utils.Constants.BASE_HEAD_LINE_NEWS_URL
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

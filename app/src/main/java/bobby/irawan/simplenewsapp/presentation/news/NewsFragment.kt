@@ -45,6 +45,15 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(), NewsAdapter.ClickListe
             viewLifecycleOwner,
             Observer { newsModelView -> showNewsList(newsModelView) }
         )
+        newsViewModel.loadingStatus.observe(
+            viewLifecycleOwner,
+            Observer { status -> setProgressBar(status) }
+        )
+    }
+
+    private fun setProgressBar(status: Boolean) {
+        binding.showProgressBar = status
+        binding.showList = !status
     }
 
     private fun showNewsList(newsModelView: NewsModelView?) {
