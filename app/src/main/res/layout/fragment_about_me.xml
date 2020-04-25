@@ -14,7 +14,7 @@
             android:id="@+id/circle_image_person"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/image_bobby_irawan"
+            android:src="@drawable/creator_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -80,8 +80,7 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(), NewsAdapter.ClickListe
     }
 
     override fun onClickItemListener(newsArticle: NewsArticleModelView?) {
-        val bundle = bundleOf(NEWS_ARTICLE_ARGS to newsArticle)
-        findNavController().navigate(R.id.action_news_to_news_detail, bundle)
+        NewsDetailActivity.startActivity(requireContext(), newsArticle)
     }
 
 }

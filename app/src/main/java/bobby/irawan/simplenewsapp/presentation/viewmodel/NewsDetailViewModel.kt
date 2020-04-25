@@ -1,23 +1,23 @@
 package bobby.irawan.simplenewsapp.presentation.viewmodel
 
-import android.os.Bundle
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
-import bobby.irawan.simplenewsapp.utils.Constants.NEWS_ARTICLE_ARGS
+import bobby.irawan.simplenewsapp.presentation.news.NewsDetailActivity.Companion.EXTRA_NEWS_ARTICLE
 
 class NewsDetailViewModel : ViewModel() {
 
-    private var newsArticle = NewsArticleModelView()
+    private var newsArticle : NewsArticleModelView? = null
 
-    private val _newsArticleLiveData = MutableLiveData<NewsArticleModelView>()
-    val newsArticleLiveData: LiveData<NewsArticleModelView>
+    private val _newsArticleLiveData = MutableLiveData<NewsArticleModelView?>()
+    val newsArticleLiveData: LiveData<NewsArticleModelView?>
         get() = _newsArticleLiveData
 
-    fun retrieveArguments(arguments: Bundle?) {
-        arguments?.let {
-            newsArticle = it.getSerializable(NEWS_ARTICLE_ARGS) as NewsArticleModelView
+    fun retrieveIntent(intent: Intent?) {
+        if (intent != null) {
+            newsArticle = intent.getSerializableExtra(EXTRA_NEWS_ARTICLE) as? NewsArticleModelView
             _newsArticleLiveData.postValue(newsArticle)
         }
     }

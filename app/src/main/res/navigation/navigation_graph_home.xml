@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_news_to_about_me"
             app:destination="@id/aboutMeFragment" />
-        <action
-            android:id="@+id/action_news_to_news_detail"
-            app:destination="@id/newsDetailFragment" />
     </keep_state_fragment>
 
     <keep_state_fragment
@@ -23,12 +20,6 @@
         android:name="bobby.irawan.simplenewsapp.presentation.about.AboutMeFragment"
         android:label="fragment_about_me"
         tools:layout="@layout/fragment_about_me" />
-
-    <keep_state_fragment
-        android:id="@+id/newsDetailFragment"
-        android:name="bobby.irawan.simplenewsapp.presentation.news.NewsDetailFragment"
-        android:label="fragment_news_detail"
-        tools:layout="@layout/fragment_news_detail" />
 
 
 </navigation>

@@ -3,17 +3,21 @@ package bobby.irawan.simplenewsapp.utils
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.utils.Constants.DATE_FORMAT_DAY
 import bobby.irawan.simplenewsapp.utils.Constants.EMPTY
 import coil.api.load
+import coil.size.Scale
 
 object DataBindingUtils {
 
     @BindingAdapter("bind:setImageCoil")
     @JvmStatic
     fun setImageCoil(imageView: ImageView, urlImage: String?) {
-        imageView.load(urlImage.orEmpty()) {
+        imageView.load(urlImage) {
             crossfade(true)
+            scale(Scale.FILL)
+            error(R.drawable.ic_no_image)
         }
     }
 

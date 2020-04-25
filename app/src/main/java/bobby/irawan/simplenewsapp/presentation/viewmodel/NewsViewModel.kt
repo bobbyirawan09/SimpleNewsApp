@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : ViewModel() {
 
-    private var news : NewsModelView? = null
+    private var news: NewsModelView? = null
 
     private val _newsLiveData = MutableLiveData<NewsModelView>()
     val newsLiveData: LiveData<NewsModelView>
@@ -27,18 +27,18 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
         get() = _errorValue
 
     fun getNewsData() {
-            _loadingStatus.value = true
-            viewModelScope.launch(Dispatchers.IO) {
-                news = repositoryContract.getHeadLineNews()
-                withContext(Dispatchers.Main) {
-                    if (news != null) {
-                        _newsLiveData.postValue(news)
-                    } else {
-                        _errorValue.value = "Data tidak dapat ditemukan"
-                    }
-                    _loadingStatus.value = false
+        _loadingStatus.value = true
+        viewModelScope.launch(Dispatchers.IO) {
+            news = repositoryContract.getHeadLineNews()
+            withContext(Dispatchers.Main) {
+                if (news != null) {
+                    _newsLiveData.postValue(news)
+                } else {
+                    _errorValue.value = "Data tidak dapat ditemukan"
                 }
+                _loadingStatus.value = false
             }
+        }
     }
 
 }

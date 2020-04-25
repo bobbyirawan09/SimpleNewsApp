@@ -50,6 +50,7 @@
                     android:id="@+id/recycler_view_news"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingBottom="?attr/actionBarSize"
                     android:visibility="@{showList ? View.VISIBLE: View.GONE}"
                     tools:itemCount="3"
                     tools:listitem="@layout/row_news" />
