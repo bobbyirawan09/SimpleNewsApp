@@ -19,5 +19,5 @@ Design inspired by some awesome peoples, see their dribbble site for more awesom
 * News detail design - [TrendNews – International News App](https://dribbble.com/shots/8719178-TrendNews-International-News-App)
 * (Will be adding more later...)
 
-##API Source
+## API Source
 I'm using API from [NewsAPI](https://newsapi.org) to get news data. You can use it for free or paid.
