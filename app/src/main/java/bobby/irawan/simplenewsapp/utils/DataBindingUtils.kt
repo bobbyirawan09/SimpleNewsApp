@@ -14,10 +14,16 @@ object DataBindingUtils {
     @BindingAdapter("bind:setImageCoil")
     @JvmStatic
     fun setImageCoil(imageView: ImageView, urlImage: String?) {
-        imageView.load(urlImage) {
-            crossfade(true)
-            scale(Scale.FILL)
-            error(R.drawable.ic_no_image)
+        if (!urlImage.isNullOrEmpty()) {
+            imageView.load(urlImage) {
+                crossfade(true)
+                scale(Scale.FILL)
+            }
+        } else {
+            imageView.load(R.drawable.ic_no_image) {
+                crossfade(true)
+                scale(Scale.FILL)
+            }
         }
     }
 
