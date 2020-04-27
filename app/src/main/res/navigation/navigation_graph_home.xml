@@ -7,19 +7,19 @@
 
     <keep_state_fragment
         android:id="@+id/newsFragment"
-        android:name="bobby.irawan.simplenewsapp.presentation.news.NewsFragment"
+        android:name="bobby.irawan.simplenewsapp.presentation.ui.home.NewsFragment"
         android:label="fragment_news"
         tools:layout="@layout/fragment_news">
         <action
-            android:id="@+id/action_news_to_about_me"
-            app:destination="@id/aboutMeFragment" />
+            android:id="@+id/action_newsFragment_to_categoryFragment"
+            app:destination="@id/categoryFragment" />
     </keep_state_fragment>
 
     <keep_state_fragment
-        android:id="@+id/aboutMeFragment"
-        android:name="bobby.irawan.simplenewsapp.presentation.about.AboutMeFragment"
-        android:label="fragment_about_me"
-        tools:layout="@layout/fragment_about_me" />
+        android:id="@+id/categoryFragment"
+        android:name="bobby.irawan.simplenewsapp.presentation.ui.home.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category" />
 
 
 </navigation>

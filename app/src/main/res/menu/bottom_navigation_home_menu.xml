@@ -9,10 +9,10 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/aboutMeFragment"
-        android:icon="@drawable/ic_person"
+        android:id="@+id/categoryFragment"
+        android:icon="@drawable/ic_category"
         android:orderInCategory="2"
-        android:title="@string/about_me_title"
+        android:title="@string/category_title"
         app:showAsAction="ifRoom" />
 
 </menu>

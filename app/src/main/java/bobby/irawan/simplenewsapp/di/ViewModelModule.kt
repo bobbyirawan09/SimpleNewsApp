@@ -1,6 +1,7 @@
 package bobby.irawan.simplenewsapp.di
 
 import bobby.irawan.simplenewsapp.presentation.viewmodel.AboutMeViewModel
+import bobby.irawan.simplenewsapp.presentation.viewmodel.CategoryViewModel
 import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsDetailViewModel
 import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -18,6 +19,10 @@ val viewModelModule = module {
 
     viewModel {
         NewsDetailViewModel()
+    }
+
+    viewModel {
+        CategoryViewModel()
     }
 
 }
