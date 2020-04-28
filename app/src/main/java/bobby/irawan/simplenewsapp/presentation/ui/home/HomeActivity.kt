@@ -4,11 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.plusAssign
 import androidx.navigation.ui.setupWithNavController
 import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.databinding.ActivityMainBinding
-import bobby.irawan.simplenewsapp.presentation.navigation.CustomNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class HomeActivity : AppCompatActivity() {
@@ -21,7 +19,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.hide()
         setUpNavigation()
     }
 

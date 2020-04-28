@@ -17,13 +17,20 @@ object DataBindingUtils {
         if (!urlImage.isNullOrEmpty()) {
             imageView.load(urlImage) {
                 crossfade(true)
-                scale(Scale.FILL)
             }
         } else {
             imageView.load(R.drawable.ic_no_image) {
                 crossfade(true)
-                scale(Scale.FILL)
             }
+        }
+    }
+
+    @BindingAdapter("bind:setImageCoil")
+    @JvmStatic
+    fun setImageCoilDrawable(imageView: ImageView, drawable: Int) {
+        imageView.load(drawable) {
+            crossfade(true)
+            scale(Scale.FILL)
         }
     }
 

@@ -15,6 +15,7 @@ import bobby.irawan.simplenewsapp.presentation.ui.adapter.NewsAdapter
 import bobby.irawan.simplenewsapp.presentation.ui.newsdetail.NewsDetailActivity
 import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.custom_toolbar.view.*
 import kotlinx.android.synthetic.main.fragment_news.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -32,7 +33,12 @@ class NewsFragment : BaseFragment<FragmentNewsBinding>(),
 
     override fun main(view: View, savedInstanceState: Bundle?) {
         super.main(view, savedInstanceState)
+        setToolbar()
         newsViewModel.getNewsData()
+    }
+
+    private fun setToolbar() {
+        binding.toolbar.text_view_toolbar_title.text = resources.getString(R.string.app_name)
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_news

@@ -17,7 +17,7 @@
 
     <keep_state_fragment
         android:id="@+id/categoryFragment"
-        android:name="bobby.irawan.simplenewsapp.presentation.ui.home.CategoryFragment"
+        android:name="bobby.irawan.simplenewsapp.presentation.ui.home.NewsCategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/fragment_category" />
 
