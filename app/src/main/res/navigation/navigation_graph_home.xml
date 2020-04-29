@@ -5,7 +5,7 @@
     android:id="@+id/navigation_graph_home"
     app:startDestination="@+id/newsFragment">
 
-    <keep_state_fragment
+    <fragment
         android:id="@+id/newsFragment"
         android:name="bobby.irawan.simplenewsapp.presentation.ui.home.NewsFragment"
         android:label="fragment_news"
@@ -13,13 +13,29 @@
         <action
             android:id="@+id/action_newsFragment_to_categoryFragment"
             app:destination="@id/categoryFragment" />
-    </keep_state_fragment>
+    </fragment>
 
-    <keep_state_fragment
+    <fragment
         android:id="@+id/categoryFragment"
-        android:name="bobby.irawan.simplenewsapp.presentation.ui.home.NewsCategoryFragment"
+        android:name="bobby.irawan.simplenewsapp.presentation.ui.home.CategoryFragment"
         android:label="fragment_category"
-        tools:layout="@layout/fragment_category" />
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoryFragment_to_newsCategoryFragment"
+            app:destination="@id/newsCategoryFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/newsCategoryFragment"
+        android:name="bobby.irawan.simplenewsapp.presentation.ui.newscategory.NewsCategoryFragment"
+        android:label="fragment_news_category"
+        tools:layout="@layout/fragment_news_category">
+        <argument
+            android:name="category"
+            android:defaultValue="@null"
+            app:argType="bobby.irawan.simplenewsapp.presentation.model.NewsCategoryModelView"
+            app:nullable="true" />
+    </fragment>
 
 
 </navigation>

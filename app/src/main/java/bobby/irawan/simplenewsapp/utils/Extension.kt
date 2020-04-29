@@ -1,5 +1,6 @@
 package bobby.irawan.simplenewsapp.utils
 
+import androidx.navigation.NavController
 import bobby.irawan.simplenewsapp.utils.Constants.APPS_LOCALE
 import bobby.irawan.simplenewsapp.utils.Constants.DATE_FORMAT_API
 import bobby.irawan.simplenewsapp.utils.Constants.DATE_FORMAT_DEFAULT

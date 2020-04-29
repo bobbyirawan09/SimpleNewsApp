@@ -13,14 +13,18 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment<dataBinding : ViewDataBinding> : Fragment() {
 
     protected lateinit var binding: dataBinding
+    private var savedView: View? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
-        return binding.root
+        if (savedView == null) {
+            binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+            savedView = binding.root
+        }
+        return savedView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
