@@ -1,6 +1,5 @@
 package bobby.irawan.simplenewsapp.di
 
-import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsCategoryViewModel
 import bobby.irawan.simplenewsapp.presentation.viewmodel.AboutMeViewModel
 import bobby.irawan.simplenewsapp.presentation.viewmodel.CategoryViewModel
 import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsDetailViewModel
@@ -24,12 +23,6 @@ val viewModelModule = module {
 
     viewModel {
         CategoryViewModel()
-    }
-
-    viewModel {
-        NewsCategoryViewModel(
-            get()
-        )
     }
 
 }
