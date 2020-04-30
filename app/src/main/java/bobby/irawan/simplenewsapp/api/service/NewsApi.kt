@@ -10,4 +10,7 @@ interface NewsApi {
     @GET
     suspend fun getHeadlineNews(@Url url: String): NewsResponse
 
+    @GET
+    suspend fun getHeadlineNewsCategory(@Url url: String): NewsResponse
+
 }

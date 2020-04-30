@@ -18,6 +18,12 @@ class NewsRepository constructor(private val api: NewsApiService) : NewsReposito
         return newsModelView
     }
 
+    override suspend fun getHeadLineNewsCategory(category: String): NewsModelView? {
+        val newsResponse = api.callNewsApiWithCategory(category)
+        val newsModelView = convertResponseToModelView(newsResponse)
+        return newsModelView
+    }
+
     private suspend fun convertResponseToModelView(response: NewsResponse?): NewsModelView? =
         withContext(Dispatchers.Default) {
             response?.let {

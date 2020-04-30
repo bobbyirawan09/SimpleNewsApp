@@ -3,7 +3,7 @@ package bobby.irawan.simplenewsapp.presentation.ui.newsdetail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -11,6 +11,7 @@ import bobby.irawan.simplenewsapp.R
 import bobby.irawan.simplenewsapp.databinding.ActivityNewsDetailBinding
 import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 import bobby.irawan.simplenewsapp.presentation.viewmodel.NewsDetailViewModel
+import kotlinx.android.synthetic.main.custom_toolbar.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class NewsDetailActivity : AppCompatActivity() {
@@ -37,11 +38,16 @@ class NewsDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "News Detail"
+        setToolbar()
 
         observeViewModelChanges()
         viewModel.retrieveIntent(intent)
+    }
+
+    private fun setToolbar() {
+        binding.toolbar.image_view_back_button.visibility = View.VISIBLE
+        binding.toolbar.image_view_back_button.setOnClickListener { finish() }
+        //do something here with the layout
     }
 
     private fun observeViewModelChanges() {
@@ -53,13 +59,5 @@ class NewsDetailActivity : AppCompatActivity() {
 
     private fun showNewsArticle(newsArticle: NewsArticleModelView?) {
         binding.newsArticle = newsArticle
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id = item?.itemId
-        if (id == android.R.id.home) {
-            finish()
-        }
-        return super.onOptionsItemSelected(item)
     }
 }

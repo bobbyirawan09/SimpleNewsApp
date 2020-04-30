@@ -9,6 +9,7 @@ import bobby.irawan.simplenewsapp.repository.NewsRepositoryContract
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : ViewModel() {
 
@@ -45,8 +46,20 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
         }
     }
 
-    fun getNewsDataWithCategory() {
-
+    fun getNewsDataWithCategory(category: String) {
+        _loadingStatus.value = true
+        viewModelScope.launch(Dispatchers.IO) {
+            news =
+                repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
+            withContext(Dispatchers.Main) {
+                if (news != null) {
+                    _newsLiveData.postValue(news)
+                } else {
+                    _errorValue.value = "Data tidak dapat ditemukan"
+                }
+                _loadingStatus.value = false
+            }
+        }
     }
 
 }

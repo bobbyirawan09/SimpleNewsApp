@@ -6,4 +6,6 @@ interface NewsRepositoryContract {
 
     suspend fun getHeadLineNews(): NewsModelView?
 
+    suspend fun getHeadLineNewsCategory(category: String): NewsModelView?
+
 }
