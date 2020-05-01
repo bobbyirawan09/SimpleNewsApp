@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.caverock:androidsvg-aar:1.4@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/15a1f5e8204e5ee359ff7d6b1d4f830d/jetified-androidsvg-aar-1.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/15a1f5e8204e5ee359ff7d6b1d4f830d/jetified-androidsvg-aar-1.4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0bdc92e721f3a0e4304fdb9a667d2a33/jetified-androidsvg-aar-1.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0bdc92e721f3a0e4304fdb9a667d2a33/jetified-androidsvg-aar-1.4/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.caverock/androidsvg-aar/1.4/835789cd3f1478210785d580714cb57d23aff096/androidsvg-aar-1.4-javadoc.jar!/" />
