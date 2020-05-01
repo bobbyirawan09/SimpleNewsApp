@@ -21,19 +21,23 @@ class NewsRepositoryTest : Spek({
 
     val newsRepo = NewsRepository(newsService)
     var newsModelView: NewsModelView? = null
+    lateinit var dummyNewsResponse: NewsResponse
+
+    beforeEachGroup {
+        dummyNewsResponse = NewsResponse(
+            status = "",
+            totalResults = 0,
+            code = "200",
+            error = "No error",
+            articles = mutableListOf()
+        )
+    }
 
     Feature("Call API headline news") {
 
         Scenario("Success calling API") {
 
             Given("init value and condition") {
-                val dummyNewsResponse = NewsResponse(
-                    status = "",
-                    totalResults = 0,
-                    code = "200",
-                    error = "No error",
-                    articles = mutableListOf()
-                )
                 coEvery { newsService.callNewsApi() } returns dummyNewsResponse
             }
 
@@ -70,16 +74,11 @@ class NewsRepositoryTest : Spek({
         Scenario("Success calling API") {
 
             Given("init value and condition") {
-                val dummyNewsResponse = NewsResponse(
-                    status = "",
-                    totalResults = 0,
-                    code = "200",
-                    error = "No error",
-                    articles = mutableListOf()
-                )
-                coEvery { newsService.callNewsApiWithCategory(
-                    category = any()
-                ) } returns dummyNewsResponse
+                coEvery {
+                    newsService.callNewsApiWithCategory(
+                        category = any()
+                    )
+                } returns dummyNewsResponse
             }
 
             When("Request to API") {
@@ -95,9 +94,11 @@ class NewsRepositoryTest : Spek({
 
         Scenario("Error when calling API") {
             Given("init value and condition") {
-                coEvery { newsService.callNewsApiWithCategory(
-                    category = any()
-                ) } returns null
+                coEvery {
+                    newsService.callNewsApiWithCategory(
+                        category = any()
+                    )
+                } returns null
             }
 
             When("Request to API") {
