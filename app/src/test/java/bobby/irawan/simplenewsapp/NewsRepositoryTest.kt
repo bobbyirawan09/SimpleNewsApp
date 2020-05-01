@@ -47,5 +47,69 @@ class NewsRepositoryTest : Spek({
                 coVerify { newsService.callNewsApi() }
             }
         }
+
+        Scenario("Error when calling API") {
+            Given("init value and condition") {
+                coEvery { newsService.callNewsApi() } returns null
+            }
+
+            When("Request to API") {
+                newsModelView = runBlocking { newsRepo.getHeadLineNews() }
+            }
+
+            Then("it should return news reponse, not error") {
+                val result = newsModelView?.totalResults
+                val expectedResult = null
+                assertEquals(expectedResult, result)
+                coVerify { newsService.callNewsApi() }
+            }
+        }
+    }
+
+    Feature("Call API headline news with category") {
+        Scenario("Success calling API") {
+
+            Given("init value and condition") {
+                val dummyNewsResponse = NewsResponse(
+                    status = "",
+                    totalResults = 0,
+                    code = "200",
+                    error = "No error",
+                    articles = mutableListOf()
+                )
+                coEvery { newsService.callNewsApiWithCategory(
+                    category = any()
+                ) } returns dummyNewsResponse
+            }
+
+            When("Request to API") {
+                newsModelView = runBlocking { newsRepo.getHeadLineNewsCategory("") }
+            }
+
+            Then("it should return news reponse, not error") {
+                val isResultEmpty = newsModelView?.articles.isNullOrEmpty()
+                assertEquals(true, isResultEmpty)
+                coVerify { newsService.callNewsApi() }
+            }
+        }
+
+        Scenario("Error when calling API") {
+            Given("init value and condition") {
+                coEvery { newsService.callNewsApiWithCategory(
+                    category = any()
+                ) } returns null
+            }
+
+            When("Request to API") {
+                newsModelView = runBlocking { newsRepo.getHeadLineNews() }
+            }
+
+            Then("it should return news reponse, not error") {
+                val result = newsModelView?.totalResults
+                val expectedResult = null
+                assertEquals(expectedResult, result)
+                coVerify { newsService.callNewsApi() }
+            }
+        }
     }
 })
