@@ -1,7 +1,7 @@
 package bobby.irawan.simplenewsapp
 
-import bobby.irawan.simplenewsapp.api.response.NewsResponse
-import bobby.irawan.simplenewsapp.api.service.NewsApiService
+import bobby.irawan.simplenewsapp.data.api.response.NewsResponse
+import bobby.irawan.simplenewsapp.data.api.service.NewsApiService
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.repository.NewsRepository
 import io.mockk.coEvery

@@ -14,7 +14,7 @@ class CategoryViewModel : ViewModel() {
         get() = _newsCategoriesLiveData
 
     fun getCategoryData() {
-        categories = NewsCategoryModelView.getCategories()
+//        categories = NewsCategoryModelView.getCategories()
         _newsCategoriesLiveData.value = categories
     }
 }

@@ -1,16 +1,21 @@
 package bobby.irawan.simplenewsapp.repository
 
-import bobby.irawan.simplenewsapp.api.response.NewsArticleResponse
-import bobby.irawan.simplenewsapp.api.response.NewsResponse
-import bobby.irawan.simplenewsapp.api.response.NewsSourceResponse
-import bobby.irawan.simplenewsapp.api.service.NewsApiService
+import bobby.irawan.simplenewsapp.data.api.response.NewsArticleResponse
+import bobby.irawan.simplenewsapp.data.api.response.NewsResponse
+import bobby.irawan.simplenewsapp.data.api.response.NewsSourceResponse
+import bobby.irawan.simplenewsapp.data.api.service.NewsApiService
+import bobby.irawan.simplenewsapp.data.local.NewsCategoryDAO
+import bobby.irawan.simplenewsapp.data.local.NewsCategoryEntity
 import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class NewsRepository constructor(private val api: NewsApiService) : NewsRepositoryContract {
+class NewsRepository constructor(
+    private val api: NewsApiService,
+    private val newsCategoryDAO: NewsCategoryDAO
+) : NewsRepositoryContract {
 
     override suspend fun getHeadLineNews(): NewsModelView? {
         val newsResponse = api.callNewsApi()
@@ -22,6 +27,15 @@ class NewsRepository constructor(private val api: NewsApiService) : NewsReposito
         val newsResponse = api.callNewsApiWithCategory(category)
         val newsModelView = convertResponseToModelView(newsResponse)
         return newsModelView
+    }
+
+    override suspend fun getNewsCategory() {
+        //Is it better set it as live data or without live data
+        newsCategoryDAO.getNewsCategories()
+    }
+
+    override suspend fun addNewsCategory(newsCategoryEntity: NewsCategoryEntity) {
+        newsCategoryDAO.insert(newsCategoryEntity)
     }
 
     private suspend fun convertResponseToModelView(response: NewsResponse?): NewsModelView? =

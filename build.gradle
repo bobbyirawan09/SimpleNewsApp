@@ -5,7 +5,9 @@ buildscript {
     ext.spek_version = '2.0.10'
     ext.android_junit5_version = '1.5.2.0'
     ext.junit5_runner = '0.2.2'
-    ext.jacoco_version='0.8.1'
+    ext.jacoco_version = '0.8.1'
+    ext.room_version = '2.2.5'
+
     repositories {
         google()
         jcenter()
