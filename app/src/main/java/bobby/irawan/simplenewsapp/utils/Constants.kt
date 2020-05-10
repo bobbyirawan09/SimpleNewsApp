@@ -24,4 +24,10 @@ object Constants {
 
     const val NEWS_ARTICLE_ARGS = "newsArg"
 
+    //For network call
+    sealed class Response {
+        data class Success<T>(val data: T?) : Response()
+        data class Error(val errorMessage: String) : Response()
+    }
+
 }

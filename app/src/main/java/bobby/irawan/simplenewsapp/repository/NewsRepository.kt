@@ -10,6 +10,7 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsCategoryModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
+import bobby.irawan.simplenewsapp.utils.Constants.Response
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -18,16 +19,14 @@ class NewsRepository constructor(
     private val newsCategoryDAO: NewsCategoryDAO
 ) : NewsRepositoryContract {
 
-    override suspend fun getHeadLineNews(): NewsModelView? {
+    override suspend fun getHeadLineNews(): Response {
         val newsResponse = api.callNewsApi()
-        val newsModelView = convertResponseToModelView(newsResponse)
-        return newsModelView
+        return onCheckResponseNews(newsResponse)
     }
 
-    override suspend fun getHeadLineNewsCategory(category: String): NewsModelView? {
+    override suspend fun getHeadLineNewsCategory(category: String): Response {
         val newsResponse = api.callNewsApiWithCategory(category)
-        val newsModelView = convertResponseToModelView(newsResponse)
-        return newsModelView
+        return onCheckResponseNews(newsResponse)
     }
 
     override suspend fun getNewsCategory(): List<NewsCategoryModelView> {
@@ -39,6 +38,13 @@ class NewsRepository constructor(
 
     override suspend fun addNewsCategory(newsCategoryEntity: NewsCategoryEntity) {
         newsCategoryDAO.insert(newsCategoryEntity)
+    }
+
+    private suspend fun onCheckResponseNews(newsResponse: Response): Response {
+        when (newsResponse) {
+            is Response.Success<*> -> convertResponseToModelView(newsResponse.data as NewsResponse)
+        }
+        return newsResponse
     }
 
     private suspend fun convertToCategoryModelView(entity: NewsCategoryEntity): NewsCategoryModelView {

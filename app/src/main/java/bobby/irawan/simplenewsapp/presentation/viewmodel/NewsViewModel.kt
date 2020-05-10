@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.repository.NewsRepositoryContract
+import bobby.irawan.simplenewsapp.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -31,12 +32,14 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
         if (news == null) {
             _loadingStatus.value = true
             viewModelScope.launch(Dispatchers.IO) {
-                news = repositoryContract.getHeadLineNews()
+                val response = repositoryContract.getHeadLineNews()
                 withContext(Dispatchers.Main) {
-                    if (news != null) {
-                        _newsLiveData.postValue(news)
-                    } else {
-                        _errorValue.value = "Data tidak dapat ditemukan"
+                    when (response) {
+                        is Constants.Response.Success<*> -> {
+                            news = response.data as NewsModelView
+                            _newsLiveData.postValue(news)
+                        }
+                        is Constants.Response.Error -> _errorValue.value = response.errorMessage
                     }
                     _loadingStatus.value = false
                 }
@@ -49,13 +52,15 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
     fun getNewsDataWithCategory(category: String) {
         _loadingStatus.value = true
         viewModelScope.launch(Dispatchers.IO) {
-            news =
+            val response =
                 repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
             withContext(Dispatchers.Main) {
-                if (news != null) {
-                    _newsLiveData.postValue(news)
-                } else {
-                    _errorValue.value = "Data tidak dapat ditemukan"
+                when (response) {
+                    is Constants.Response.Success<*> -> {
+                        news = response.data as NewsModelView
+                        _newsLiveData.postValue(news)
+                    }
+                    is Constants.Response.Error -> _errorValue.value = response.errorMessage
                 }
                 _loadingStatus.value = false
             }
