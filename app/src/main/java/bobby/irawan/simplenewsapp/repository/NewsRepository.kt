@@ -7,6 +7,7 @@ import bobby.irawan.simplenewsapp.data.api.service.NewsApiService
 import bobby.irawan.simplenewsapp.data.local.NewsCategoryDAO
 import bobby.irawan.simplenewsapp.data.local.NewsCategoryEntity
 import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
+import bobby.irawan.simplenewsapp.presentation.model.NewsCategoryModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
 import kotlinx.coroutines.Dispatchers
@@ -29,13 +30,25 @@ class NewsRepository constructor(
         return newsModelView
     }
 
-    override suspend fun getNewsCategory() {
-        //Is it better set it as live data or without live data
-        newsCategoryDAO.getNewsCategories()
+    override suspend fun getNewsCategory(): List<NewsCategoryModelView> {
+        val newsCategories = newsCategoryDAO.getNewsCategories()
+        return newsCategories.value?.map {
+            convertToCategoryModelView(it)
+        } ?: listOf()
     }
 
     override suspend fun addNewsCategory(newsCategoryEntity: NewsCategoryEntity) {
         newsCategoryDAO.insert(newsCategoryEntity)
+    }
+
+    private suspend fun convertToCategoryModelView(entity: NewsCategoryEntity): NewsCategoryModelView {
+        return withContext(Dispatchers.Default) {
+            NewsCategoryModelView().apply {
+                name = entity.name
+                image = entity.image
+                color = entity.color
+            }
+        }
     }
 
     private suspend fun convertResponseToModelView(response: NewsResponse?): NewsModelView? =

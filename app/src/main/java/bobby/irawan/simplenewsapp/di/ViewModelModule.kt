@@ -22,7 +22,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        CategoryViewModel()
+        CategoryViewModel(get())
     }
 
 }

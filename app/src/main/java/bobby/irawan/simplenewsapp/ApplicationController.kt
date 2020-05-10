@@ -1,6 +1,7 @@
 package bobby.irawan.simplenewsapp
 
 import android.app.Application
+import bobby.irawan.simplenewsapp.di.databaseModule
 import bobby.irawan.simplenewsapp.di.repositoryModule
 import bobby.irawan.simplenewsapp.di.serviceModule
 import bobby.irawan.simplenewsapp.di.viewModelModule
@@ -10,9 +11,11 @@ import org.koin.core.context.startKoin
 
 class ApplicationController : Application() {
 
+    private lateinit var instance: ApplicationController
+
     override fun onCreate() {
         super.onCreate()
-
+        instance = this
         startKoin {
             androidLogger()
             androidContext(this@ApplicationController)
@@ -20,12 +23,13 @@ class ApplicationController : Application() {
                 listOf(
                     serviceModule,
                     repositoryModule,
-                    viewModelModule
+                    viewModelModule,
+                    databaseModule
                 )
             )
         }
     }
 
-    fun getInstance(): ApplicationController = this
+    fun getInstance(): ApplicationController = instance
 
 }
