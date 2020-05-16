@@ -1,6 +1,5 @@
 package bobby.irawan.simplenewsapp.utils
 
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +14,6 @@ object ApiUtils {
         if (httpClientApi == null) {
             httpClientApi =
                 Retrofit.Builder().baseUrl("https://newsapi.org")
-                    .addCallAdapterFactory(CoroutineCallAdapterFactory())
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(getHttpClient())
                     .build()

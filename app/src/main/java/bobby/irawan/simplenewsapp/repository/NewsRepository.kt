@@ -41,10 +41,10 @@ class NewsRepository constructor(
     }
 
     private suspend fun onCheckResponseNews(newsResponse: Response): Response {
-        when (newsResponse) {
-            is Response.Success<*> -> convertResponseToModelView(newsResponse.data as NewsResponse)
+        return when (newsResponse) {
+            is Response.Success<*> -> Response.Success(convertResponseToModelView(newsResponse.data as NewsResponse))
+            is Response.Error -> Response.Error(newsResponse.errorMessage)
         }
-        return newsResponse
     }
 
     private suspend fun convertToCategoryModelView(entity: NewsCategoryEntity): NewsCategoryModelView {
