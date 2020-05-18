@@ -8,6 +8,9 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.repository.NewsRepositoryContract
 import bobby.irawan.simplenewsapp.utils.Constants
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -15,6 +18,7 @@ import java.util.*
 class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : ViewModel() {
 
     private var news: NewsModelView? = null
+    private val viewModelJob = SupervisorJob()
 
     private val _newsLiveData = MutableLiveData<NewsModelView>()
     val newsLiveData: LiveData<NewsModelView>
@@ -31,30 +35,8 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
     fun getNewsData() {
         if (news == null) {
             _loadingStatus.value = true
-            viewModelScope.launch(Dispatchers.IO) {
-                val response = repositoryContract.getHeadLineNews()
-                withContext(Dispatchers.Main) {
-                    when (response) {
-                        is Constants.Response.Success<*> -> {
-                            news = response.data as NewsModelView
-                            _newsLiveData.postValue(news)
-                        }
-                        is Constants.Response.Error -> _errorValue.value = response.errorMessage
-                    }
-                    _loadingStatus.value = false
-                }
-            }
-        } else {
-            _newsLiveData.postValue(news)
-        }
-    }
-
-    fun getNewsDataWithCategory(category: String) {
-        _loadingStatus.value = true
-        viewModelScope.launch(Dispatchers.IO) {
-            val response =
-                repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
-            withContext(Dispatchers.Main) {
+            viewModelScope.launch(Main + viewModelJob) {
+                val response = withContext(IO + viewModelJob) { repositoryContract.getHeadLineNews() }
                 when (response) {
                     is Constants.Response.Success<*> -> {
                         news = response.data as NewsModelView
@@ -64,6 +46,25 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
                 }
                 _loadingStatus.value = false
             }
+        } else {
+            _newsLiveData.postValue(news)
+        }
+    }
+
+    fun getNewsDataWithCategory(category: String) {
+        _loadingStatus.value = true
+        viewModelScope.launch(Main + viewModelJob) {
+            val response = withContext(IO + viewModelJob) {
+                repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
+            }
+            when (response) {
+                is Constants.Response.Success<*> -> {
+                    news = response.data as NewsModelView
+                    _newsLiveData.postValue(news)
+                }
+                is Constants.Response.Error -> _errorValue.value = response.errorMessage
+            }
+            _loadingStatus.value = false
         }
     }
 
