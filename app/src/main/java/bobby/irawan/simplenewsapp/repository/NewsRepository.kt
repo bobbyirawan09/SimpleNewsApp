@@ -11,8 +11,6 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsCategoryModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
 import bobby.irawan.simplenewsapp.utils.Constants.Response
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class NewsRepository constructor(
     private val api: NewsApiService,
@@ -40,30 +38,25 @@ class NewsRepository constructor(
         newsCategoryDAO.insert(newsCategoryEntity)
     }
 
-    private suspend fun onCheckResponseNews(newsResponse: Response): Response {
+    private fun onCheckResponseNews(newsResponse: Response): Response {
         return when (newsResponse) {
             is Response.Success<*> -> Response.Success(convertResponseToModelView(newsResponse.data as NewsResponse))
             is Response.Error -> Response.Error(newsResponse.errorMessage)
         }
     }
 
-    private suspend fun convertToCategoryModelView(entity: NewsCategoryEntity): NewsCategoryModelView {
-        return withContext(Dispatchers.Default) {
-            NewsCategoryModelView().apply {
-                name = entity.name
-                image = entity.image
-                color = entity.color
-            }
+    private fun convertToCategoryModelView(entity: NewsCategoryEntity): NewsCategoryModelView =
+        NewsCategoryModelView().apply {
+            name = entity.name
+            image = entity.image
+            color = entity.color
         }
-    }
 
-    private suspend fun convertResponseToModelView(response: NewsResponse?): NewsModelView? =
-        withContext(Dispatchers.Default) {
-            response?.let {
-                NewsModelView().apply {
-                    totalResults = it.totalResults
-                    articles = generateArticlesModelView(it.articles)
-                }
+    private fun convertResponseToModelView(response: NewsResponse?): NewsModelView? =
+        response?.let {
+            NewsModelView().apply {
+                totalResults = it.totalResults
+                articles = generateArticlesModelView(it.articles)
             }
         }
 
