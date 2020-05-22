@@ -15,8 +15,6 @@ import java.util.*
 class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : ViewModel() {
 
     private var news: NewsModelView? = null
-    private val viewModelJob = SupervisorJob()
-    private val coroutineScope = viewModelScope + viewModelJob
 
     private val _newsLiveData = MutableLiveData<NewsModelView>()
     val newsLiveData: LiveData<NewsModelView>
@@ -33,8 +31,8 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
     fun getNewsData() {
         if (news == null) {
             _loadingStatus.value = true
-            coroutineScope.launch(Main) {
-                val response = withContext(IO) { repositoryContract.getHeadLineNews() }
+            viewModelScope.launch(Main) {
+                val response = repositoryContract.getHeadLineNews()
                 when (response) {
                     is Constants.Response.Success<*> -> {
                         news = response.data as NewsModelView
@@ -51,10 +49,9 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
 
     fun getNewsDataWithCategory(category: String) {
         _loadingStatus.value = true
-        coroutineScope.launch(Main) {
-            val response = withContext(IO) {
+        viewModelScope.launch(Main) {
+            val response =
                 repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
-            }
             when (response) {
                 is Constants.Response.Success<*> -> {
                     news = response.data as NewsModelView
@@ -64,11 +61,6 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
             }
             _loadingStatus.value = false
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 
 }

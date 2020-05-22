@@ -13,22 +13,15 @@ import kotlinx.coroutines.Dispatchers.Main
 class CategoryViewModel(private val repository: NewsRepositoryContract) : ViewModel() {
 
     private var categories = listOf<NewsCategoryModelView>()
-    private val viewModelJob = SupervisorJob()
-    private val coroutineScope = viewModelScope + viewModelJob
 
     private val _newsCategoriesLiveData = MutableLiveData<List<NewsCategoryModelView>>()
     val newsCategoriesLiveData: LiveData<List<NewsCategoryModelView>>
         get() = _newsCategoriesLiveData
 
     fun getCategoryData() {
-        coroutineScope.launch(Main) {
-            categories = withContext(IO) { repository.getNewsCategory() }
+        viewModelScope.launch(Main) {
+            categories = repository.getNewsCategory()
             _newsCategoriesLiveData.value = categories
         }
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
     }
 }
