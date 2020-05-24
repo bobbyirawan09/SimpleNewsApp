@@ -8,7 +8,7 @@ Tech I used to create the app
 * [Retrofit](https://square.github.io/retrofit/) - Library to fetch data from API.
 * [Coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html) - Mainly used for threading, basically you can't say threading, it only for explanation purpose.
 * [Coil](https://github.com/coil-kt/coil) - Image loader.
-* [Koin](https://insert-koin.io) - Dependency injection. Way more simpler than using Dagger 2. Easily understand.
+* [Koin](https://insert-koin.io) - Dependency injection. Way more simple than using Dagger 2. Easily understand.
 * [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started) - For change between fragment. I will try my best to make it single activity.
 * [Data binding](https://developer.android.com/topic/libraries/data-binding) - Binding component layout in XML to activity/fragment
 * [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/) - To fetch data stream from API. In the app, it actually not needed to use it, since the data type would be on-shot, but I just want to try it in this project.
