@@ -7,9 +7,12 @@ import androidx.lifecycle.viewModelScope
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.repository.NewsRepositoryContract
 import bobby.irawan.simplenewsapp.utils.Constants
-import kotlinx.coroutines.*
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
+import kotlinx.coroutines.launch
 import java.util.*
 
 class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : ViewModel() {
@@ -30,17 +33,18 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
 
     fun getNewsData() {
         if (news == null) {
-            _loadingStatus.value = true
             viewModelScope.launch(Main) {
-                val response = repositoryContract.getHeadLineNews()
-                when (response) {
-                    is Constants.Response.Success<*> -> {
-                        news = response.data as NewsModelView
-                        _newsLiveData.postValue(news)
+                repositoryContract.getHeadLineNews()
+                    .onStart { _loadingStatus.value = true }
+                    .catch { exception ->
+                        _errorValue.value = exception.message
                     }
-                    is Constants.Response.Error -> _errorValue.value = response.errorMessage
-                }
-                _loadingStatus.value = false
+                    .onCompletion {
+                        _loadingStatus.value = false
+                    }
+                    .collect {
+                        _newsLiveData.value = it
+                    }
             }
         } else {
             _newsLiveData.postValue(news)
@@ -50,16 +54,17 @@ class NewsViewModel(private val repositoryContract: NewsRepositoryContract) : Vi
     fun getNewsDataWithCategory(category: String) {
         _loadingStatus.value = true
         viewModelScope.launch(Main) {
-            val response =
-                repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
-            when (response) {
-                is Constants.Response.Success<*> -> {
-                    news = response.data as NewsModelView
-                    _newsLiveData.postValue(news)
+            repositoryContract.getHeadLineNewsCategory(category.toLowerCase(Locale.getDefault()))
+                .onStart { _loadingStatus.value = true }
+                .catch { exception ->
+                    _errorValue.value = exception.message
                 }
-                is Constants.Response.Error -> _errorValue.value = response.errorMessage
-            }
-            _loadingStatus.value = false
+                .onCompletion {
+                    _loadingStatus.value = false
+                }
+                .collect {
+                    _newsLiveData.value = it
+                }
         }
     }
 

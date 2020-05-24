@@ -10,21 +10,29 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsCategoryModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
-import bobby.irawan.simplenewsapp.utils.Constants.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 
 class NewsRepository constructor(
     private val api: NewsApiService,
     private val newsCategoryDAO: NewsCategoryDAO
 ) : NewsRepositoryContract {
 
-    override suspend fun getHeadLineNews(): Response {
+    override suspend fun getHeadLineNews(): Flow<NewsModelView?> {
         val newsResponse = api.callNewsApi()
-        return onCheckResponseNews(newsResponse)
+        return newsResponse.map { response ->
+            convertResponseToModelView(response)
+        }.flowOn(Dispatchers.Default).conflate()
     }
 
-    override suspend fun getHeadLineNewsCategory(category: String): Response {
+    override suspend fun getHeadLineNewsCategory(category: String): Flow<NewsModelView?> {
         val newsResponse = api.callNewsApiWithCategory(category)
-        return onCheckResponseNews(newsResponse)
+        return newsResponse.map { response ->
+            convertResponseToModelView(response)
+        }.flowOn(Dispatchers.Default).conflate()
     }
 
     override suspend fun getNewsCategory(): List<NewsCategoryModelView> {
@@ -36,13 +44,6 @@ class NewsRepository constructor(
 
     override suspend fun addNewsCategory(newsCategoryEntity: NewsCategoryEntity) {
         newsCategoryDAO.insert(newsCategoryEntity)
-    }
-
-    private fun onCheckResponseNews(newsResponse: Response): Response {
-        return when (newsResponse) {
-            is Response.Success<*> -> Response.Success(convertResponseToModelView(newsResponse.data as NewsResponse))
-            is Response.Error -> Response.Error(newsResponse.errorMessage)
-        }
     }
 
     private fun convertToCategoryModelView(entity: NewsCategoryEntity): NewsCategoryModelView =
