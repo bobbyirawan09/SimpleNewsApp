@@ -9,6 +9,7 @@ import bobby.irawan.simplenewsapp.repository.NewsRepositoryContract
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.flow.collect
 
 class CategoryViewModel(private val repository: NewsRepositoryContract) : ViewModel() {
 
@@ -20,8 +21,11 @@ class CategoryViewModel(private val repository: NewsRepositoryContract) : ViewMo
 
     fun getCategoryData() {
         viewModelScope.launch(Main) {
-            categories = repository.getNewsCategory()
-            _newsCategoriesLiveData.value = categories
+            repository.getNewsCategory()
+                .collect {
+                    categories = it
+                    _newsCategoriesLiveData.value = categories
+                }
         }
     }
 }

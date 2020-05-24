@@ -20,7 +20,7 @@ interface NewsCategoryDAO {
     suspend fun insertAll(newsCategoriesEntity: List<NewsCategoryEntity>)
 
     @Query("SELECT * from news_category_table ORDER BY id ASC")
-    fun getNewsCategories(): LiveData<List<NewsCategoryEntity>>
+    suspend fun getNewsCategories(): List<NewsCategoryEntity>
 
     @Query("DELETE from news_category_table WHERE id = :id")
     suspend fun deleteCategory(id: Int)

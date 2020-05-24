@@ -11,7 +11,7 @@ interface NewsRepositoryContract {
 
     suspend fun getHeadLineNewsCategory(category: String): Flow<NewsModelView?>
 
-    suspend fun getNewsCategory(): List<NewsCategoryModelView>
+    suspend fun getNewsCategory(): Flow<List<NewsCategoryModelView>>
 
     suspend fun addNewsCategory(newsCategoryEntity: NewsCategoryEntity)
 

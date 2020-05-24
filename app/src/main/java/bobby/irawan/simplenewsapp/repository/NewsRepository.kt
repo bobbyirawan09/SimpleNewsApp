@@ -11,35 +11,35 @@ import bobby.irawan.simplenewsapp.presentation.model.NewsCategoryModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsModelView
 import bobby.irawan.simplenewsapp.presentation.model.NewsSourceModelView
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.conflate
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 
 class NewsRepository constructor(
     private val api: NewsApiService,
     private val newsCategoryDAO: NewsCategoryDAO
 ) : NewsRepositoryContract {
 
+    private val dispatchersDefault = Dispatchers.Default
+
     override suspend fun getHeadLineNews(): Flow<NewsModelView?> {
         val newsResponse = api.callNewsApi()
         return newsResponse.map { response ->
             convertResponseToModelView(response)
-        }.flowOn(Dispatchers.Default).conflate()
+        }.flowOn(dispatchersDefault)
     }
 
     override suspend fun getHeadLineNewsCategory(category: String): Flow<NewsModelView?> {
         val newsResponse = api.callNewsApiWithCategory(category)
         return newsResponse.map { response ->
             convertResponseToModelView(response)
-        }.flowOn(Dispatchers.Default).conflate()
+        }.flowOn(dispatchersDefault)
     }
 
-    override suspend fun getNewsCategory(): List<NewsCategoryModelView> {
-        val newsCategories = newsCategoryDAO.getNewsCategories()
-        return newsCategories.value?.map {
-            convertToCategoryModelView(it)
-        } ?: listOf()
+    override suspend fun getNewsCategory(): Flow<List<NewsCategoryModelView>> {
+        return flow {
+            emit(newsCategoryDAO.getNewsCategories().map {
+                convertToCategoryModelView(it)
+            })
+        }.flowOn(dispatchersDefault)
     }
 
     override suspend fun addNewsCategory(newsCategoryEntity: NewsCategoryEntity) {
