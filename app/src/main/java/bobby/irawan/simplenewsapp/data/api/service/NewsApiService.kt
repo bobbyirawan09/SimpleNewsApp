@@ -1,7 +1,6 @@
 package bobby.irawan.simplenewsapp.data.api.service
 
 import bobby.irawan.simplenewsapp.data.api.response.NewsResponse
-import bobby.irawan.simplenewsapp.utils.Constants.Response
 import kotlinx.coroutines.flow.Flow
 
 interface NewsApiService {

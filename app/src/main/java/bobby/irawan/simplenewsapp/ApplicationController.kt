@@ -1,21 +1,21 @@
 package bobby.irawan.simplenewsapp
 
 import android.app.Application
-import bobby.irawan.simplenewsapp.di.databaseModule
-import bobby.irawan.simplenewsapp.di.repositoryModule
-import bobby.irawan.simplenewsapp.di.serviceModule
-import bobby.irawan.simplenewsapp.di.viewModelModule
+import android.content.Context
+import bobby.irawan.simplenewsapp.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
 class ApplicationController : Application() {
 
-    private lateinit var instance: ApplicationController
+    companion object {
+        var context: Context? = null
+    }
 
     override fun onCreate() {
         super.onCreate()
-        instance = this
+        context = this
         startKoin {
             androidLogger()
             androidContext(this@ApplicationController)
@@ -24,12 +24,11 @@ class ApplicationController : Application() {
                     serviceModule,
                     repositoryModule,
                     viewModelModule,
-                    databaseModule
+                    databaseModule,
+                    retrofitModule
                 )
             )
         }
     }
-
-    fun getInstance(): ApplicationController = instance
 
 }

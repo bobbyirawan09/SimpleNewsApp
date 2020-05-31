@@ -3,7 +3,7 @@
     <string name="home_title">Home</string>
     <string name="about_me_title">About Me</string>
     <string name="news_category_title">Kategori Berita</string>
-    <string name="category_title">Kategori</string>
+    <string name="category_title">Categories</string>
     <string name="creator_name">Bobby Irawan</string>
     <string name="creator_email">irawanbobby09@gmail.com</string>
     <string name="interest_kotlin">Kotlin</string>
@@ -15,4 +15,15 @@
     <string name="social_media_linkedin">linkedin.com/in/bobby-irawan/</string>
     <string name="creator_job">Jr. Android Developer</string>
     <string name="author_news_detail">%1$s \u2022 %2$s</string>
+    <string name="email_title">Email</string>
+    <string name="password_title">Password</string>
+    <string name="log_in_title">Log In</string>
+    <string name="facebook_app_id">567439874147339</string>
+    <string name="fb_login_protocol_scheme">fb567439874147339</string>
+    <string name="optional_login_title">Or log in with</string>
+    <string name="register_title">Don\'t have account yet?</string>
+    <string name="register_now_title">Register now</string>
+    <string name="account_title">Account</string>
+    <string name="facebook_title">Facebook</string>
+    <string name="google_title">Google</string>
 </resources>
