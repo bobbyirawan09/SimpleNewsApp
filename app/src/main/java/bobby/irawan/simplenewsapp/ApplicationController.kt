@@ -25,7 +25,8 @@ class ApplicationController : Application() {
                     repositoryModule,
                     viewModelModule,
                     databaseModule,
-                    retrofitModule
+                    retrofitModule,
+                    otherModule
                 )
             )
         }

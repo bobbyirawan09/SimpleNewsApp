@@ -14,7 +14,8 @@ import bobby.irawan.simplenewsapp.utils.SharedPreferenceUtils.KEY_IS_USER_LOG_IN
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import kotlinx.android.synthetic.main.custom_toolbar.view.*
-import kotlinx.android.synthetic.main.layout_login.view.*
+import org.koin.android.ext.android.get
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -26,7 +27,9 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
     }
 
     private val viewModel: AccountViewModel by viewModel()
-    private val isUserLogin = (SharedPreferenceUtils.sharedPref?.getBoolean(KEY_IS_USER_LOG_IN, false) ?: false)
+    private val gso: GoogleSignInOptions by inject()
+    private val isUserLogin =
+        (SharedPreferenceUtils.sharedPref?.getBoolean(KEY_IS_USER_LOG_IN, false) ?: false)
 
     override fun getLayoutId(): Int = R.layout.fragment_account
 
@@ -36,15 +39,8 @@ class AccountFragment : BaseFragment<FragmentAccountBinding>() {
             binding.toolbar.text_view_toolbar_title.text = context?.getString(R.string.log_in_title)
         }
 
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestEmail()
-            .build()
         val mGoogleSignInClient = GoogleSignIn.getClient(activity?.applicationContext!!, gso);
         var account = GoogleSignIn.getLastSignedInAccount(activity?.applicationContext!!)
-        binding.layoutLogin.button_google_login.setOnClickListener {
-            val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
