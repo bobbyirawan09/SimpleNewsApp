@@ -1,6 +1,7 @@
 package bobby.irawan.simplenewsapp.di
 
 import bobby.irawan.simplenewsapp.presentation.viewmodel.*
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -23,7 +24,7 @@ val viewModelModule = module {
     }
 
     viewModel{
-        AccountViewModel(get())
+        AccountViewModel(androidContext(), get())
     }
 
 }

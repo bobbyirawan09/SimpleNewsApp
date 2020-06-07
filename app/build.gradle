@@ -5,6 +5,8 @@ apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'jacoco'
 apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
@@ -115,8 +117,6 @@ dependencies {
     //Lifecycle
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
 
-    // Koin AndroidX Scope features
-    implementation "org.koin:koin-androidx-scope:2.1.5"
     // Koin AndroidX ViewModel features
     implementation "org.koin:koin-androidx-viewmodel:2.1.5"
 
@@ -135,5 +135,9 @@ dependencies {
     //Google and facebook signin
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
     implementation 'com.facebook.android:facebook-login:5.15.3'
+
+    implementation 'com.google.firebase:firebase-analytics:17.4.2'
+    implementation 'com.google.firebase:firebase-auth:19.3.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
 
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -64,8 +63,8 @@
                 android:id="@+id/image_view_facebook_logo"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_marginBottom="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/facebook_logo"
                 app:layout_constraintBottom_toBottomOf="parent"

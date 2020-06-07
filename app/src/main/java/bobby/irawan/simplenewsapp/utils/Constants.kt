@@ -14,7 +14,9 @@ object Constants {
     const val DATE_FORMAT_DAY = "EEEE, dd MMMM yyyy \u2022 HH:mm"
     const val DATE_FORMAT_API = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 
-    const val RC_SIGN_IN = 9001
+    const val RC_SIGN_IN = 1337
+    const val SHARED_PREF_NAME = "SnapSharedPref"
+    const val KEY_IS_USER_LOG_IN = "KeyIsUserLogIn"
 
     @JvmField
     val APPS_LOCALE = Locale("in", "ID")
@@ -31,6 +33,11 @@ object Constants {
     sealed class Response {
         data class Success<T>(val data: T?) : Response()
         data class Error(val errorMessage: String) : Response()
+    }
+
+    enum class SocialMedia {
+        FACEBOOK,
+        GOOGLE
     }
 
 }

@@ -26,7 +26,9 @@ class ApplicationController : Application() {
                     viewModelModule,
                     databaseModule,
                     retrofitModule,
-                    otherModule
+                    googleSignInModule,
+                    sharedPreferenceModule,
+                    firebaseModule
                 )
             )
         }
