@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import bobby.irawan.simplenewsapp.presentation.model.NewsArticleModelView
-import bobby.irawan.simplenewsapp.presentation.presentation.newsdetail.NewsDetailActivity.Companion.EXTRA_NEWS_ARTICLE
+import bobby.irawan.simplenewsapp.presentation.ui.newsdetail.NewsDetailActivity.Companion.EXTRA_NEWS_ARTICLE
 
 class NewsDetailViewModel : ViewModel() {
 

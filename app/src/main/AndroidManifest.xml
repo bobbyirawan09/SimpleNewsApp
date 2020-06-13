@@ -17,8 +17,8 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".presentation.presentation.newsdetail.NewsDetailActivity" />
-        <activity android:name=".presentation.presentation.home.HomeActivity">
+        <activity android:name=".presentation.ui.newsdetail.NewsDetailActivity" />
+        <activity android:name=".presentation.ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
